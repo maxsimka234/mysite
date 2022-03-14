@@ -8,5 +8,10 @@ def index(request):
         "post_list":post_list,
     })
 
-def post_page_view(request , post_id):
-    return HttpResponse("this is a post num: "+str(post_id))    
+def post_page_view(request , self_post_id):
+    post=models.Post.objects.get(id=self_post_id)
+    comments_list=models.Comment.objects.filter(post_id=self_post_id)
+    return render(request,'b/post.html',{
+        'post' :post,
+        'comments_list' : comments_list,
+    })    

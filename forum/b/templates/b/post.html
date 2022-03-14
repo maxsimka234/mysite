@@ -1,0 +1,28 @@
+{% extends "b/base.html" %}
+
+{%block title%}9ch{%endblock%}
+
+{%block content%}
+<style>
+    .brd {
+     border: 4px double black; /* Параметры границы */
+     background: rgb(255, 255, 255); /* Цвет фона */
+     padding: 10px; /* Поля вокруг текста */
+    }
+</style>
+
+    <center>
+        <div class="brd">
+            <h2><b>{{post.post_title}}</b></h2>
+            <h3>{{post.post_text}}</h3>
+        </div>
+        {%for coment in comments_list%}
+            <div class="brd">
+                <b>{{coment.comment_author}}</b> 
+                {{coment.comment_pub_date}}
+                <p>{{coment.comment_text}}</p>
+            </div>
+        {%endfor%}
+            {{post.post_pub_date}}
+    </center>
+{%endblock%}
