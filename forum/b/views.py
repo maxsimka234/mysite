@@ -1,6 +1,10 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse ,HttpResponseRedirect
+from django.urls import reverse
+import datetime
+from requests import post
 from . import models
+from .import forms
 
 def index(request):
     post_list=models.Post.objects.all()
@@ -15,3 +19,15 @@ def post_page_view(request , self_post_id):
         'post' :post,
         'comments_list' : comments_list,
     })    
+
+def add_coment(request, self_post_id):
+    form=forms.AddCommentForm(request.POST)
+    if form.is_valid():
+        models.Comment.objects.create(post_id=models.Post.objects.get(id=self_post_id) , comment_author=form.cleaned_data["comment_author"],
+         comment_text=form.cleaned_data["comment_text"] , comment_pub_date=datetime.datetime.now() )
+        return HttpResponseRedirect(reverse("post_page",args=str(self_post_id)))
+    else:  
+        return HttpResponse(request)    
+        
+    
+    

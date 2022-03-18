@@ -3,14 +3,14 @@
 {%block title%}9ch{%endblock%}
 
 {%block content%} 
-        <div class="container pt-10 center my-5 border ">
+        <div class="container pt-10 center my-5 border border-2 border-dark">
             <div class="text-center">
 
                 <h2><b>{{post.post_title}}</b></h2>
                 <h3>{{post.post_text}}</h3>
             
                 {%for coment in comments_list%}
-                    <div class="container pt-10 my-5 border">
+                    <div class="container pt-10 my-5 border border-1 ">
 
                         <b>{{coment.comment_author}}</b> 
                         {{coment.comment_pub_date}}
@@ -18,6 +18,21 @@
 
                     </div>
                 {%endfor%}
+                <div class="container pt-20 my-10 border border-1 ">
+                    <div class="text-center"><h3>Coment this post</h3></div>
+                    <form action="{%url 'add_comment' post.id %}" method="post" >
+                        {% csrf_token %}
+                        <div class="mb-3 mt-3">
+                            <label for="comment_author">Author:</label>
+                            <input type="text" class="form-control" id="comment_author" value="Anonim" placeholder="Enter you name" name="comment_author" maxlength="50">  
+                        </div>
+                        <div class="mb-3 mt-3">
+                          <label for="comment_text">Comments:</label>
+                          <textarea class="form-control" rows="5" id="comment_text" name="comment_text" maxlength="200"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary p-right">Submit</button>
+                      </form>
+                </div>  
                 {{post.post_pub_date}}
             </div>
         </div>
