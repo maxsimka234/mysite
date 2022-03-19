@@ -11,5 +11,20 @@
             {%endfor%}
         </div>
     </div>
-    
+<div class="container pt-10 center my-5 border border-2">
+    <div class="text-center"><h3>Create post</h3></div>
+                    <form action="{%url 'create_post'%}" method="post" >
+                        {% csrf_token %}
+                        <div class="mb-3 mt-3">
+                            <label for="post_titel">Titel:</label>
+                            <input type="text" class="form-control" id="something" value="test"  name="post_titel" maxlength="100">  
+                        </div>
+                        <div class="mb-3 mt-3">
+                          <label for="post_text">Post text:</label>
+                          <textarea class="form-control" rows="5" id="comment_text" name="post_text" maxlength="500"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary p-right">Submit</button>
+                      </form>
+</div>
+
 {%endblock%}

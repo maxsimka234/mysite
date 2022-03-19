@@ -29,5 +29,11 @@ def add_coment(request, self_post_id):
     else:  
         return HttpResponse(request)    
         
-    
-    
+def create_post(request):
+    form=forms.CreatePostForm(request.POST)
+    if form.is_valid():
+        models.Post.objects.create(post_title=form.cleaned_data["post_titel"] ,post_text=form.cleaned_data["post_text"],
+        post_pub_date=datetime.datetime.now() )    
+        return HttpResponseRedirect(reverse('index'))
+    else:
+        return HttpResponse(request)    
