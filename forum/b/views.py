@@ -49,7 +49,7 @@ def add_coment(request, self_post_id):
                                                  comment_text=form.cleaned_data["comment_text"] , comment_pub_date=datetime.datetime.now() )
                 return HttpResponseRedirect(reverse("post_page",args=str(self_post_id)))
             else:
-                return HttpResponse('Invalid reCAPTCHA. Please try again.')           
+                return HttpResponseRedirect(reverse("post_page",args=str(self_post_id)))          
     else: 
         return HttpResponse(request)    
         
@@ -75,6 +75,6 @@ def create_post(request):
                 post_pub_date=datetime.datetime.now() )    
                 return HttpResponseRedirect(reverse('index'))
             else:
-                return HttpResponse('Invalid reCAPTCHA. Please try again.')   
+                return HttpResponseRedirect(reverse('index'))   
     else:
         return HttpResponse(request)    
