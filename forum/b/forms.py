@@ -1,5 +1,6 @@
 from django import forms
 
+
 class CreatePostForm(forms.Form):
     post_titel=forms.CharField(max_length=100)
     post_text=forms.CharField(max_length=500)
