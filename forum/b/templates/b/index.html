@@ -5,10 +5,14 @@
 {%block content%}
 <div class="container pt-10 center my-5 border">
     <div class="text-center">
-        <h2>Hellow web world , im 9ch! most crazy forum in local network</h2>
+        <h2>Hellow web world , im 9ch!</h2>
+
         {%for post in post_list%}
-        <h3><a href="{%url 'post_page' post.id %}">{{post.post_title}}</a></h3>
+        <div class="container pt-10 center my-5 border">
+            <h3><a href="{%url 'post_page' post.id %}">{{post.post_title}}</a></h3>
+        </div>
         {%endfor%}
+
     </div>
 </div>
 <div class="container pt-10 center my-5 border border-2">
